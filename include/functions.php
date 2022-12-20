@@ -89,6 +89,36 @@ function UserExists($conn, $username){
 		return false;
 	}
 }
+function RouteRegistered($conn, $routeId, $uid){
+	$sql = "SELECT * FROM `RegistracijaMarsrutui` WHERE `PakeleivisId` = ? AND `MarsrutoId` = ?";
+	$stmt = mysqli_stmt_init($conn);
+	if(!mysqli_stmt_prepare($stmt, $sql)){
+		header("location: ../register.php?error=stmtfailed");
+        exit();
+	}
+	mysqli_stmt_bind_param($stmt, "ss", $uid, $routeId);
+	mysqli_stmt_execute($stmt);
+
+	$resultData = mysqli_stmt_get_result($stmt);
+	if($row = mysqli_fetch_assoc($resultData)){
+		mysqli_stmt_close($stmt);
+		return "<a href='./include/deleteRoute.php?routeId=".$routeId."&uid=".$uid."'class='btn btn-danger'>Atšaukti registraciją</a></td>";;
+	}
+	else{
+		return "<a href='regRoute.php?id=".$routeId."'class='btn btn-primary'>Registruotis</a></td>";
+	}
+}
+function CancelRegistration($conn, $uid, $routeId){
+	$sql ="DELETE FROM `RegistracijaMarsrutui` WHERE `PakeleivisId` = ? AND `MarsrutoId` = ?";
+	$stmt = mysqli_stmt_init($conn);
+	if(!mysqli_stmt_prepare($stmt, $sql)){
+		header("location: ../homePage.php?error=stmtfailed");
+        exit();
+	}
+	mysqli_stmt_bind_param($stmt, "ss", $uid, $routeId);
+	mysqli_stmt_execute($stmt);
+	header("location: ../homePage.php?Canceled=true");
+}
 function createAccount($conn, $name, $surname, $username, $phoneNumber, $email, $pass){
 	$sql = "INSERT INTO RegistruotasNaudotojas(`RegistracijosData`, `Vardas`, `Pavarde`, `Aktyvus`, `PrisijungimoVardas`, `SifrSlaptazodis`, `TelNumeris`, `Epastas`, `Role`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	$stmt = mysqli_stmt_init($conn);
@@ -166,7 +196,6 @@ function RegisterToRoute($conn,  $uid, $routeId, $regDate, $weight){
 		header("location: ../homePage.php?error=stmtfailed");
         exit();
 	}
-
 	mysqli_stmt_bind_param($stmt,"ssss",$weight, $regDate, $uid, $routeId);
 	mysqli_stmt_execute($stmt);
 	

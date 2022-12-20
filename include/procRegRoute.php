@@ -8,6 +8,7 @@ if(isset($_POST["regRoute"])){
     require_once 'config.php';
     require_once 'functions.php';
 	$uid=$_POST["uid"];
+    
 	if(emptyInput($weight) !== false){
         header("location: ../regRoute.php?error=empty");
         exit();
