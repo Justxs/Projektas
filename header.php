@@ -22,4 +22,4 @@
             ?>
         </nav>
         <div class="d-flex justify-content-center">
-            <div class="bg-white p-4 rounded">
+            <div class="shadow bg-white p-4 rounded">

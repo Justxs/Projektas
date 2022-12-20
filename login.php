@@ -12,7 +12,7 @@ include_once 'header.php';
 
         <label>Slaptažodis:</label>
         <input class="form-control mb-3" name="pass" required placeholder="Slaptažodis" type="password"
-        oninvalid="this.setCustomValidity('Įveskie slaptažodį')"
+        oninvalid="this.setCustomValidity('Įveskite slaptažodį')"
         oninput="this.setCustomValidity('')"/>
 
         <button type="submit" name="login" class="btn btn-primary btn-block">Prisijungti</button>
@@ -21,7 +21,7 @@ include_once 'header.php';
     </div>
 </form>
 <?php
-    echo "<b class=\"text-danger\">";
+    echo "<b class='text-danger'>";
     if(isset($_GET["error"])){
         if($_GET["error"]== "stmtfailed"){
             echo "Klaida pabandyk dar kartą";
@@ -32,7 +32,6 @@ include_once 'header.php';
         if($_GET["error"]== "wronglogin"){
             echo "Neteisingas slaptažodis arba slapyvardis";
         }
-        
     }
     echo "</b>";
 ?>

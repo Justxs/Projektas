@@ -158,3 +158,18 @@ function createRoute($conn, $start, $end, $date, $periodic, $price, $uid){
 	mysqli_stmt_close($stmt);
 	header("location: ../CreateRoute.php?error=none");
 }
+function RegisterToRoute($conn,  $uid, $routeId, $regDate, $weight){
+	$sql = "INSERT INTO `RegistracijaMarsrutui`(`BagazoSvoris`, `RegistracijosData`, `PakeleivisId`, `MarsrutoId`) VALUES (?,?,?,?)";
+	$stmt = mysqli_stmt_init($conn);
+	if(!mysqli_stmt_prepare($stmt, $sql)){
+		echo mysqli_stmt_error($stmt);
+		header("location: ../homePage.php?error=stmtfailed");
+        exit();
+	}
+
+	mysqli_stmt_bind_param($stmt,"ssss",$weight, $regDate, $uid, $routeId);
+	mysqli_stmt_execute($stmt);
+	
+	mysqli_stmt_close($stmt);
+	header("location: ../homePage.php?error=none");
+}

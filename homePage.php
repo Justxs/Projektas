@@ -15,10 +15,20 @@ foreach($user_roles as $x=>$x_value)
 
 if($role =="Pakeleivis"){
     include_once 'passenger.php';
+    if(isset($_GET["error"])){
+        if($_GET["error"]== "none"){
+            echo "<b class='text-success'>Registracija sėkminga</b>";
+        }
+        if($_GET["error"]== "stmtfailed"){
+            echo "<b class='text-danger'>Klaida pabandyk dar kartą</b>";
+        }
+
+    }
 }
 else{    
     include_once 'driver.php';
 }
+
 mysqli_close($conn);
 include_once 'footer.php';
 ?>

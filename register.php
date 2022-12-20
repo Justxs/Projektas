@@ -9,29 +9,43 @@
         <div class="form-row mb-3">
             <div class="col">
                 <label>Vardas:</label>
-                <input class="form-control" name="name" placeholder="Vardas" type="text"/>
+                <input class="form-control" name="name" placeholder="Vardas" type="text" required 
+                oninvalid="this.setCustomValidity('Įveskite vardą')"
+                oninput="this.setCustomValidity('')"/>
             </div>
             <div class="col">
                 <label>Pavardė:</label>
-                <input class="form-control" name="surname" placeholder="Pavardė" type="text"/>
+                <input class="form-control" name="surname" placeholder="Pavardė" type="text" required
+                oninvalid="this.setCustomValidity('Įveskite Pavardę')"
+                oninput="this.setCustomValidity('')"/>
             </div>
         </div>
 
         <label>Slapyvardis:</label>
-        <input class="form-control mb-3" name="username" placeholder="Slapyvardis" type="text"/>
+        <input class="form-control mb-3" name="username" placeholder="Slapyvardis" type="text" required
+        oninvalid="this.setCustomValidity('Įveskite slapyvardį')"
+        oninput="this.setCustomValidity('')"/>
 
         <label>Telefono numeris:</label>
-        <input class="form-control mb-3" name="phoneNumber" placeholder="+370600000000" type="text"/>
+        <input class="form-control mb-3" name="phoneNumber" placeholder="+370600000000" pattern="^[+]370[0-9]{8}" type="tel" required
+        oninvalid="this.setCustomValidity('Įveskite teisingo formato telefono numerį')"
+        oninput="this.setCustomValidity('')"/>
 
         <label>El. paštas:</label>
-        <input class="form-control mb-3" name="email" placeholder="El. paštas" type="email"/>
+        <input class="form-control mb-3" name="email" placeholder="El. paštas" type="email" required    
+        oninvalid="this.setCustomValidity('Įveskite El. paštą')"
+        oninput="this.setCustomValidity('')"/>
 
         <label>Slaptažodis:</label>
         <small id="passHelp" class="form-text text-muted">Slaptažodis turi būti bent 8 simbolių ir turi būti sudarytas iš skaitmenų bei raidžių.
         </small>
-        <input class="form-control mb-3" aria-describedby="passHelp" name="pass" placeholder="Slaptažodis" type="password"/>
+        <input class="form-control mb-3" aria-describedby="passHelp" name="pass" placeholder="Slaptažodis" type="password" required   
+        oninvalid="this.setCustomValidity('Įveskite slaptažodį')"
+        oninput="this.setCustomValidity('')"/>
         <label>Įrašykite dar kartą slaptažodį:</label>
-        <input class="form-control mb-3"  name="passRepeat" placeholder="Slaptažodis" type="password"/>
+        <input class="form-control mb-3"  name="passRepeat" placeholder="Slaptažodis" type="password" required
+        oninvalid="this.setCustomValidity('Įveskite slaptažodį')"
+        oninput="this.setCustomValidity('')"/> 
 
         <button type="submit" name="register" class="btn btn-primary btn-block">Regisruotis</button>
         <div class="dropdown-divider"></div>
