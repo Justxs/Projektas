@@ -1,4 +1,6 @@
 <?php
+    if (!isset($_SESSION['role'])) { header("Location: include/logout.php");exit;}
+    if ($_SESSION['role'] != 1) { header("Location: homePage.php");exit;}
     $sql = "SELECT * FROM Marsrutas";
     $result = mysqli_query($conn, $sql);
     echo "

@@ -7,7 +7,7 @@ if (isset($_SESSION['role'])) { header("Location: homePage.php");exit;}
     <p>Autorius: Justas Pranauskis IFF-0/9</p>
     <p>Sistema sukurta <b>T120B145 Kompiuterių tinklai ir internetinės technologijos</b> modulio IT savarankiško darbo atsiskaitymui</p>
     <div>
-        <a class="btn btn-secondary btn-lg" href="register.php">Regisruotis</a>
+        <a class="btn btn-secondary btn-lg" href="register.php">Registruotis</a>
         <a class="btn btn-primary btn-lg" href="login.php">Prisijungti</a>
     </div>
 </div>

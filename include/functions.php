@@ -4,8 +4,7 @@ function findCity($CityId, $conn){
 	$sql = "SELECT * FROM Miestas WHERE id = '$CityId'";
 	$result = mysqli_query($conn, $sql);
 	$row = mysqli_fetch_assoc($result);
-	$ans = $row["Pavadinimas"];
-	return $ans;
+	return $row["Pavadinimas"];
 }
 function isPeriodic($Bool){
 	if ($Bool == 1)
@@ -15,6 +14,7 @@ function isPeriodic($Bool){
 }
 function findDriver($Driver){
 	$dbc=mysqli_connect(HOSTNAME, USERNAME, PASSWORD, DATABASE);
+	mysqli_set_charset($dbc, "utf8");
 	$sql = "SELECT * FROM RegistruotasNaudotojas WHERE uid = '$Driver'";
 	$result = mysqli_query($dbc, $sql);
 	$row = mysqli_fetch_assoc($result);
