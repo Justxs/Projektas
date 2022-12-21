@@ -3,7 +3,8 @@ include_once 'header.php';
 require_once 'include/config.php';
 require_once 'include/functions.php';
 
-if (!isset($_SESSION['username']) || $_SESSION['role']==="2") { header("Location: include/logout.php");exit;}
+if (!isset($_SESSION['role'])) { header("Location: include/logout.php");exit;}
+if ($_SESSION['role'] != 2) { header("Location: homePage.php");exit;}
 ?>
 <h1 class="text-primary">Maršruto kurimas</h1>
 <form action="include/procCreate.php" method="POST">

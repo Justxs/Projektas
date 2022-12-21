@@ -15,11 +15,13 @@
             <div class="bg-light p-2 rounded">
                 <img  src="images/carpool.png" width="50" >
             </div>
-            <?php
-            if(isset($_SESSION['username'])){
-                echo "<li><a href=\"include/logout.php\" class=\"btn btn-danger\" type=\"submit\">Atsijungti</a></li>";
-            }
-            ?>
+            <div class="m-3">
+                <?php
+                    if(isset($_SESSION['username'])){
+                        echo "<a href='include/logout.php' class='btn btn-danger''>Atsijungti</a>";
+                    }
+                ?>
+            </div>
         </nav>
         <div class="d-flex justify-content-center">
             <div class="shadow bg-white p-4 rounded">

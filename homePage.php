@@ -1,10 +1,9 @@
 <?php 
 include_once 'header.php';
-
-if (!isset($_SESSION['username'])) { header("Location: include/logout.php");exit;}
 require_once("include/config.php");
 require_once("include/functions.php");
 
+if (!isset($_SESSION['role'])) { header("Location: include/logout.php");exit;}
 $user=$_SESSION['username'];
 $userlevel=$_SESSION['role'];
 $role="";

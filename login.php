@@ -1,5 +1,6 @@
 <?php 
 include_once 'header.php';
+if (isset($_SESSION['role'])) { header("Location: homePage.php");exit;}
 ?>
 
 <form action="include/proclogin.php" method="POST" class="login">             

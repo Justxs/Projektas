@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION['role'])) { header("Location: include/logout.php");exit;}
+if ($_SESSION['role'] != 2) { header("Location: homePage.php");exit;}
+
 $sql = "SELECT * FROM Marsrutas WHERE VezejasId = ". $_SESSION["userid"];
 $result = mysqli_query($conn, $sql);
 echo "<h1 class='text-primary'>Mano maršrutai</h1>";

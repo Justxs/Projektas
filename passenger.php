@@ -1,8 +1,8 @@
 <?php
     $sql = "SELECT * FROM Marsrutas";
     $result = mysqli_query($conn, $sql);
-    echo "<div>
-    <h1 class='text-primary'>Galimi maršrutai</h1>";
+    echo "
+    <h1 class='text-center text-primary'>Galimi maršrutai</h1>";
     if(isset($_GET["Canceled"])){
         if($_GET["Canceled"]== "true"){
             echo "<b class='text-success'>Registracija atšaukta</b>";
@@ -30,8 +30,14 @@
         </tr>";
         while($row = mysqli_fetch_assoc($result))
         {
-            echo "
-            <tr>
+            $date1 = $row['IsvykimoData'];
+            $date2 = date("Y-m-d");
+            $timestamp1 = strtotime($date1);
+            $timestamp2 = strtotime($date2);
+            if($timestamp1 > $timestamp2){
+
+                echo "
+                <tr>
                 <td>".$row['IsvykimoData']."</td>
                 <td>".findCity($row['PradinisTaskasId'])."</td>
                 <td>".findCity($row['GalinisTaskasId'])."</td>
@@ -40,12 +46,13 @@
                 <td>".$row['VietuSk']."</td>
                 <td>".findDriver($row['VezejasId'])."</td>
                 <td>".RouteRegistered($conn, $row['id'],$_SESSION['userid'])."</td>
-            </tr>
-            </div>";
+                </tr>
+                ";
+            }
         }
         echo "</table>";
     }
     else{
         echo "<p>Maršrutų šiuo metu nėra</p>";
     }
-?>
+    ?>
