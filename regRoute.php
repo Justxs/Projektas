@@ -17,7 +17,7 @@
 ?>
 <form action="include/procRegRoute.php" method="POST" class="regRoute">             
 <h1 class="mx-auto text-primary"><b>Registracija į maršrutą</b></h1>
-<h2 class="text-primary"><?=findCity($row['PradinisTaskasId'])?>-<?=findCity($row['GalinisTaskasId'])?></h2>
+<h2 class="text-primary"><?=findCity($row['PradinisTaskasId'], $conn)?>-<?=findCity($row['GalinisTaskasId'], $conn)?></h2>
 <div class="form-group">
     <label>Bagažo svoris(Kg):</label>
     <input class="form-control mb-3" name="weight" required placeholder="Svoris" type="number" 

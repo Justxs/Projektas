@@ -1,9 +1,8 @@
 <?php
 require_once("config.php");
-function findCity($CityId){
-	$dbc=mysqli_connect(HOSTNAME, USERNAME, PASSWORD, DATABASE);
+function findCity($CityId, $conn){
 	$sql = "SELECT * FROM Miestas WHERE id = '$CityId'";
-	$result = mysqli_query($dbc, $sql);
+	$result = mysqli_query($conn, $sql);
 	$row = mysqli_fetch_assoc($result);
 	$ans = $row["Pavadinimas"];
 	return $ans;
@@ -160,6 +159,7 @@ function loginUser($conn, $username, $pass){
 }
 function getCities(){
 	$dbc=mysqli_connect(HOSTNAME, USERNAME, PASSWORD, DATABASE);
+	mysqli_set_charset($dbc, "utf8");
 	$sql = "SELECT * FROM Miestas";
 	$result = mysqli_query($dbc, $sql);
 	while($row = mysqli_fetch_assoc($result)){
@@ -168,25 +168,30 @@ function getCities(){
 }
 function getCitiesId($conn, $city){
 	$sql = "SELECT * FROM `Miestas` WHERE `Pavadinimas`='$city'";
+	mysqli_set_charset($conn, "utf8");
 	$result = mysqli_query($conn, $sql);
 	$row = mysqli_fetch_assoc($result);
 	return $row["id"];
 }
-function createRoute($conn, $start, $end, $date, $periodic, $price, $uid){
-	$sql = "INSERT INTO `Marsrutas`(`IsvykimoData`, `Periodinis`, `PradinisTaskasId`, `GalinisTaskasId`, `VezejasId`, `Kaina`) VALUES (?, ?, ?, ?, ?, ?);";
+function createRoute($conn, $start, $end, $date, $periodic, $weight, $uid){
+	$sql = "INSERT INTO `Marsrutas`(`IsvykimoData`, `Periodinis`, `PradinisTaskasId`, `GalinisTaskasId`, `VezejasId`, `Svoris`) VALUES (?, ?, ?, ?, ?, ?);";
 	$stmt = mysqli_stmt_init($conn);
 	if(!mysqli_stmt_prepare($stmt, $sql)){
 		echo mysqli_stmt_error($stmt);
 		header("location: ../CreateRoute.php?error=stmtfailed");
         exit();
 	}
+	if($start=="Miestas..."||$end=="Miestas..."||$start==$end){
+		header("location: ../CreateRoute.php?error=City");
+        exit();
+	}
 	$startId = getCitiesId($conn, $start);
 	$endId = getCitiesId($conn,$end);
-	
-	mysqli_stmt_bind_param($stmt,"ssssss",$date, $periodic, $startId, $endId, $uid, $price);
+	mysqli_stmt_bind_param($stmt,"ssssss",$date, $periodic, $startId, $endId, $uid, $weight);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
-	header("location: ../CreateRoute.php?error=none");
+
+	header("location: ../homePage.php?error=none");
 }
 function RegisterToRoute($conn,  $uid, $routeId, $regDate, $weight){
 	$sql = "INSERT INTO `RegistracijaMarsrutui`(`BagazoSvoris`, `RegistracijosData`, `PakeleivisId`, `MarsrutoId`) VALUES (?,?,?,?)";

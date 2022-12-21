@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="lt">
     <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=9; text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" charset="UTF-8" content="IE=9; text/html">
         <title>Pakeleivių portalas</title>
         <link rel="icon" type="image/png" href="images/carpool.png">
         <!-- Bootstrap -->

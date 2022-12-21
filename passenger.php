@@ -25,7 +25,6 @@
             <th>Galinis<br/>taškas</th>
             <th>Galimas bagažo<br/>svoris(Kg)</th>
             <th>Ar periodinis?</th>
-            <th>Vietų<br/>skaičius</th>
             <th>Vežėjas</th><th></th>
         </tr>";
         while($row = mysqli_fetch_assoc($result))
@@ -39,11 +38,10 @@
                 echo "
                 <tr>
                 <td>".$row['IsvykimoData']."</td>
-                <td>".findCity($row['PradinisTaskasId'])."</td>
-                <td>".findCity($row['GalinisTaskasId'])."</td>
+                <td>".findCity($row['PradinisTaskasId'], $conn)."</td>
+                <td>".findCity($row['GalinisTaskasId'], $conn)."</td>
                 <td>".$row['Svoris']."</td>
                 <td>".isPeriodic($row['Periodinis'])."</td>
-                <td>".$row['VietuSk']."</td>
                 <td>".findDriver($row['VezejasId'])."</td>
                 <td>".RouteRegistered($conn, $row['id'],$_SESSION['userid'])."</td>
                 </tr>

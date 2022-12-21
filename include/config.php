@@ -9,6 +9,7 @@ $user_roles=array(
 "Vezejas"=>"2");
 
 $conn=mysqli_connect(HOSTNAME, USERNAME, PASSWORD, DATABASE);
+mysqli_set_charset($conn, "utf8");
 if(!$conn){
     die("Connection failed: " . mysqli_connect_error());
 }
