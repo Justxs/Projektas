@@ -55,4 +55,3 @@
     else{
         echo "<p>Maršrutų šiuo metu nėra</p>";
     }
-    ?>

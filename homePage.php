@@ -24,4 +24,3 @@ else{
 
 mysqli_close($conn);
 include_once 'footer.php';
-?>

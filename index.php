@@ -1,6 +1,9 @@
-<?php 
+<?php
 include_once 'header.php';
-if (isset($_SESSION['role'])) { header("Location: homePage.php");exit;}
+if (isset($_SESSION['role'])) {
+    header("Location: homePage.php");
+    exit;
+}
 ?>
 <div>
     <h1 class="text-primary">Pakeleivių portalas</h1>
@@ -14,6 +17,3 @@ if (isset($_SESSION['role'])) { header("Location: homePage.php");exit;}
 <?php
 include_once 'footer.php';
 ?>
-
-
-        
