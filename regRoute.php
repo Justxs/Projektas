@@ -30,6 +30,7 @@ $_POST['id'] = $_GET["id"];
     <div class="form-group">
         <label>Bagažo svoris(Kg):</label>
         <input class="form-control mb-3" name="weight" required placeholder="Svoris" type="number" min="0" max="<?= $row['Svoris'] ?>" oninvalid="this.setCustomValidity('Įveskite bagažo svorį')" oninput="this.setCustomValidity('')" />
+        <p class="text-secondary">Laisvas bagažo svoris: <?= $row['Svoris'] ?></p>
         <input type="hidden" name="id" value="<?= $_GET["id"] ?>" />
         <input type="hidden" name="uid" value="<?= $uid ?>" />
         <button type="submit" name="regRoute" class="btn btn-primary btn-block">Registruotis į maršrutą</button>
@@ -40,7 +41,7 @@ $_POST['id'] = $_GET["id"];
             echo "<b class='text-danger'>Neteisingas svorio formatas</b>";
         }
         if ($_GET["error"] == "none") {
-            echo "<b class='text-danger'>ĮVeskite svorį</b>";
+            echo "<b class='text-danger'>Įveskite svorį</b>";
         }
     }
     ?>

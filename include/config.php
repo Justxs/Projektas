@@ -6,7 +6,8 @@ define('DATABASE', 'Projektas');
 
 $user_roles = array(
     "Pakeleivis" => "1",
-    "Vezejas" => "2"
+    "Vežėjas" => "2",
+    "Admin" => "3"
 );
 
 $conn = mysqli_connect(HOSTNAME, USERNAME, PASSWORD, DATABASE);

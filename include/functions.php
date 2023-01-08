@@ -225,3 +225,12 @@ function RegisterToRoute($conn,  $uid, $routeId, $regDate, $weight)
 	mysqli_stmt_close($stmt);
 	header("location: ../homePage.php?error=none");
 }
+function findRole($userlevel, $user_roles)
+{
+	foreach ($user_roles as $x => $x_value) {
+		if ($x_value == $userlevel) return $x;
+	}
+}
+function changeRole($conn,  $uid)
+{
+}

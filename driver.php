@@ -1,12 +1,18 @@
 <?php
-if (!isset($_SESSION['role'])) { header("Location: include/logout.php");exit;}
-if ($_SESSION['role'] != 2) { header("Location: homePage.php");exit;}
+if (!isset($_SESSION['role'])) {
+    header("Location: include/logout.php");
+    exit;
+}
+if ($_SESSION['role'] != 2) {
+    header("Location: homePage.php");
+    exit;
+}
 
-$sql = "SELECT * FROM Marsrutas WHERE VezejasId = ". $_SESSION["userid"];
-mysqli_set_charset($conn, "utf8");
+$sql = "SELECT * FROM Marsrutas WHERE VezejasId = " . $_SESSION["userid"];
+
 $result = mysqli_query($conn, $sql);
-if(isset($_GET["error"])){
-    if($_GET["error"]== "none"){
+if (isset($_GET["error"])) {
+    if ($_GET["error"] == "none") {
         echo "<b class='text-success'>Registracija sėkminga</b>";
     }
 }
@@ -21,17 +27,15 @@ if (mysqli_num_rows($result) > 0) {
     <th >Bagažo<br/>svoris</th>
     <th >Pradinis<br/>taškas</th>
     <th >Galinis<br/>taškas</th></tr>";
-    while($row = mysqli_fetch_assoc($result))
-    {
+    while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>
-        <td >".$row['id']."</td>
-        <td >".isPeriodic($row['Periodinis'])."</td>
-        <td >".$row['IsvykimoData']."</td>
-        <td >".$row['Svoris']."</td>
-        <td >".findCity($row['PradinisTaskasId'], $conn)."</td>
-        <td >".findCity($row['GalinisTaskasId'],$conn)."</td></tr>";
+        <td >" . $row['id'] . "</td>
+        <td >" . isPeriodic($row['Periodinis']) . "</td>
+        <td >" . $row['IsvykimoData'] . "</td>
+        <td >" . $row['Svoris'] . "</td>
+        <td >" . findCity($row['PradinisTaskasId'], $conn) . "</td>
+        <td >" . findCity($row['GalinisTaskasId'], $conn) . "</td></tr>";
     }
-}
-else{
+} else {
     echo "<p>Mano maršrutų nėra</p>";
 }

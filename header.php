@@ -20,7 +20,8 @@ session_start();
         <div class="m-3">
             <?php
             if (isset($_SESSION['username'])) {
-                echo "<a href='include/logout.php' class='btn btn-danger''>Atsijungti</a>";
+                echo "<a href='/Projektas/homePage.php' class='btn btn-light mx-2'>Maršrutai</a>";
+                echo "<a href='include/logout.php' class='btn btn-danger'>Atsijungti</a>";
             }
             ?>
         </div>
